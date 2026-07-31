@@ -2,7 +2,8 @@
   "name": "rfof-codeql-network",
   "displayName": "RFOF CodeQL Network",
   "publisher": "RFOF-NETWORK",
-  "version": "0.0.0.0.1",
+  "version": "0.0.1",
+  "rfofVersion": "0.0.0.0.1",
   "engines": {
     "vscode": "^1.90.0"
   },
