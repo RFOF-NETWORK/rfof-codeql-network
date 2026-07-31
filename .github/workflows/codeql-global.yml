@@ -31,6 +31,7 @@ jobs:
         with:
           languages: ${{ inputs.language }}
           queries: ./rfof-codeql-network/queries/${{ inputs.language }}
+          source-root: .
 
       - name: Autobuild
         uses: github/codeql-action/autobuild@v4
