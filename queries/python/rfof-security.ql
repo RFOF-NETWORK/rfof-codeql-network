@@ -1,6 +1,6 @@
 /**
  * @name RFOF Python Strict Security Rule
- * @description Erzwingt globale Sicherheitsstandards im Python-Monolithen.
+ * @description Enforces global security standards in the Python monolith.
  * @kind problem
  * @security-severity 8.0
  * @precision high
