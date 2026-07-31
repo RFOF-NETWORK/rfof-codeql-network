@@ -1,0 +1,26 @@
+name: "rfof-codeql-cli-config"
+query-packs:
+  - rfof/python-queries
+  - rfof/javascript-queries
+
+search-path:
+  - ../queries
+  - ./queries
+
+extraction:
+  python:
+    exclude:
+      - "**/tests/**"
+      - "**/venv/**"
+      - "**/.git/**"
+  javascript:
+    exclude:
+      - "**/node_modules/**"
+      - "**/dist/**"
+      - "**/build/**"
+
+analysis:
+  severity-filter:
+    - error
+    - warning
+  format: sarif-latest
