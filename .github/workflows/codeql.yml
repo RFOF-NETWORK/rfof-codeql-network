@@ -1,0 +1,13 @@
+name: Project CodeQL via RFOF Network
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  call-codeql:
+    uses: RFOF-NETWORK/rfof-codeql-network/.github/workflows/codeql-global.yml@main
+    with:
+      language: 'python'
