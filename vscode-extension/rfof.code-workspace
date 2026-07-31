@@ -15,6 +15,7 @@
     "codeql.additionalPacks": [
       "../queries"
     ],
+    "codeQL.runningQueries.useExtensionPacks": "all",
     "files.exclude": {
       "**/.git": true,
       "**/.codeql-db": true
