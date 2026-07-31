@@ -15,8 +15,15 @@ jobs:
       actions: read
       contents: read
     steps:
-      - name: Checkout Repository
+      - name: Checkout Kontroll-Repo
         uses: actions/checkout@v4
+
+      - name: Python-Monolithen temporär für CodeQL einbinden
+        uses: actions/checkout@v4
+        with:
+          repository: RFOF-NETWORK/Python-polyglotten-Monolithen-prime-Multiplikation-Base
+          token: ${{ secrets.GITHUB_TOKEN }}
+          path: src/external-monolith
 
       - name: Initialize CodeQL Strict Mode
         uses: github/codeql-action/init@v4
