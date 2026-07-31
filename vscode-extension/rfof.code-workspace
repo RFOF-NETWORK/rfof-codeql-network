@@ -1,0 +1,23 @@
+{
+  "folders": [
+    {
+      "path": "../queries"
+    },
+    {
+      "path": "../cli"
+    },
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "codeql.cli.executablePath": "/usr/local/bin/codeql",
+    "codeql.additionalPacks": [
+      "../queries"
+    ],
+    "files.exclude": {
+      "**/.git": true,
+      "**/.codeql-db": true
+    }
+  }
+}
