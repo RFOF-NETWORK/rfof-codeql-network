@@ -21,4 +21,4 @@ jobs:
 
       - name: Package Extension
         working-directory: ./vscode-extension
-        run: vsce package --no-gitTagVersion
+        run: vsce package
