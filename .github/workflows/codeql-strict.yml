@@ -1,6 +1,7 @@
 name: RFOF Strict CodeQL Control
 
 on:
+  workflow_call:
   push:
     branches: [ main ]
   pull_request:
@@ -20,7 +21,7 @@ jobs:
       - name: Initialize CodeQL Strict Mode
         uses: github/codeql-action/init@v4
         with:
-          languages: 'javascript'
+          languages: 'python'
           queries: security-extended
 
       - name: Perform Strict Analysis
