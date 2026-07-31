@@ -1,5 +1,6 @@
 name: rfof/javascript-queries
-version: 0.0.0.0.1
+version: 0.0.1
+rfofVersion: 0.0.0.0.1
 packaging: queries
 dependencies:
   codeql/javascript-all: "*"
