@@ -1,0 +1,39 @@
+name: RFOF Global CodeQL
+
+on:
+  workflow_call:
+    inputs:
+      language:
+        required: true
+        type: string
+
+jobs:
+  codeql:
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      actions: read
+      contents: read
+
+    steps:
+      - name: Checkout Target Repo
+        uses: actions/checkout@v4
+
+      - name: Checkout RFOF Network Config
+        uses: actions/checkout@v4
+        with:
+          repository: RFOF-NETWORK/rfof-codeql-network
+          token: ${{ secrets.GITHUB_TOKEN }}
+          path: rfof-codeql-network
+
+      - name: Setup CodeQL CLI
+        uses: github/codeql-action/init@v4
+        with:
+          languages: ${{ inputs.language }}
+          queries: ./rfof-codeql-network/queries/${{ inputs.language }}
+
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@v4
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v4
