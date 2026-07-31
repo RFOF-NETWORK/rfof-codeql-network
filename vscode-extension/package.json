@@ -1,0 +1,20 @@
+{
+  "name": "rfof-codeql-network",
+  "displayName": "RFOF CodeQL Network",
+  "publisher": "RFOF-NETWORK",
+  "version": "0.0.0.0.1",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "contributes": {
+    "configuration": {
+      "properties": {
+        "rfof.codeql.cliPath": {
+          "type": "string",
+          "default": "/usr/local/bin/codeql",
+          "description": "Pfad zur CodeQL CLI für das RFOF Network."
+        }
+      }
+    }
+  }
+}
