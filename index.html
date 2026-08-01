@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RFOF-CodeQL-Network - Master Core (PZQQET & PRAI)</title>
+    <style>
+        :root { --neon-green: #00ff00; --neon-blue: #00ffff; --neon-pink: #ff00ff; --dark-bg: #050505; }
+        body { background-color: var(--dark-bg); color: var(--neon-green); font-family: 'Courier New', monospace; padding: 0; margin: 0; }
+        .content-wrap { padding: 15px; }
+        h1, h2 { text-transform: uppercase; border-bottom: 2px solid #222; padding-bottom: 5px; margin-top: 0; }
+        .grid-nav { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-bottom: 20px; }
+        .nav-card { background: #111; border: 1px solid #333; padding: 15px; border-radius: 4px; text-align: center; }
+        .nav-card.net { border-color: var(--neon-green); }
+        .nav-card.dev { border-color: var(--neon-blue); }
+        .nav-card.app { border-color: var(--neon-pink); }
+        button { background: #222; color: #fff; border: 1px solid #555; padding: 10px 15px; cursor: pointer; font-family: monospace; font-weight: bold; width: 100%; margin-top: 10px; }
+        button:active { background: #fff; color: #000; }
+        .bridge-btn { border-color: var(--neon-pink); color: var(--neon-pink); width: auto; padding: 6px 12px; font-size: 11px; margin-top: 0; }
+        #terminal { background: #000; border: 1px solid #333; height: 220px; padding: 10px; overflow-y: auto; font-size: 12px; margin-top: 20px; }
+        .top-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #222; padding-bottom: 5px; margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+
+    <!-- Header Login Bar (Non-blocking top docked state) -->
+    <div id="ttcHeaderAuthBar" style="background: #1a0205; border-bottom: 2px solid #ff0055; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; font-family: monospace; font-size: 0.8rem; z-index: 10000; position: relative;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <div id="authLedgerDot" style="width: 8px; height: 8px; background: #ff0055; border-radius: 50%; box-shadow: 0 0 6px #ff0055;"></div>
+            <span id="authStatusText" style="color: #ff0055; font-weight: bold;">STATUS: GESPERRT (CODEQL AUTH ERFORDERLICH)</span>
+        </div>
+        
+        <div id="authInputContainer" style="display: flex; gap: 10px; align-items: center;">
+            <input type="text" id="topAuthUser" placeholder="SAW\PAW Benutzer..." style="background: #000; border: 1px solid #444; color: #00ff66; padding: 4px 8px; font-family: monospace; font-size: 0.75rem; border-radius: 3px;">
+            <input type="password" id="topAuthPass" placeholder="Passwort..." style="background: #000; border: 1px solid #444; color: #00ff66; padding: 4px 8px; font-family: monospace; font-size: 0.75rem; border-radius: 3px;">
+            <button onclick="executeTopHeaderLogin()" style="background: #00ff66; color: #000; border: none; padding: 5px 12px; font-weight: bold; cursor: pointer; font-family: monospace; font-size: 0.75rem; border-radius: 3px;">LOGIN & AKTIVIEREN</button>
+        </div>
+    </div>
+
+    <!-- Deck Lock Shield -->
+    <div id="deckLockShield" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(5,5,5,0.88); z-index: 999; display: flex; justify-content: center; align-items: center; pointer-events: all;">
+        <div style="text-align: center; color: #00ff66; font-family: monospace; max-width: 500px; padding: 20px; border: 1px solid #00ff66; background: #000;">
+            <h3 style="color: #00bfff; margin-bottom: 5px;">RFOF-CODEQL-NETWORK // MASTER KERN</h3>
+            <p style="font-size: 0.8rem; color: #888;">Bitte im oberen Header einloggen, um die CodeQL-Schaltzentrale, Axiome und Matrix-Decks zu entsperren.</p>
+        </div>
+    </div>
+
+    <div class="content-wrap">
+        <div class="top-header">
+            <div>
+                <h1>RFOF-CodeQL-Network - Master Core</h1>
+                <p style="margin: 0;">Status: <span style="color: var(--neon-pink);">PZQQET / PRAI AXIOM SYNC (0 = #PRAI)</span></p>
+            </div>
+            <button class="bridge-btn" onclick="location.href='https://github.com/RFOF-NETWORK/rfof-codeql-network'">[ 🌐 GITHUB REPO ]</button>
+        </div>
+
+        <div class="grid-nav">
+            <div class="nav-card net">
+                <h2 style="color: var(--neon-green);">.net / Krypto</h2>
+                <p>Axiom 1: PZQQET & PRAI Prompt-Basis</p>
+                <button onclick="alert('Net-Krypto Schicht im CodeQL Hub aktiv.')" style="border-color: var(--neon-green); color: var(--neon-green);">[ NET EBENE ]</button>
+            </div>
+            
+            <div class="nav-card dev">
+                <h2 style="color: var(--neon-blue);">.dev / System</h2>
+                <p>Axiom 2 & 3: Fehlerfreie QuEkta-Theorie</p>
+                <button onclick="alert('Dev-System Schicht im CodeQL Hub aktiv.')" style="border-color: var(--neon-blue); color: var(--neon-blue);">[ DEV EBENE ]</button>
+            </div>
+            
+            <div class="nav-card app">
+                <h2 style="color: var(--neon-pink);">.app / AI</h2>
+                <p>Axiom 4: Satoramy (42) & Nullpunkt</p>
+                <button onclick="alert('App-AI Schicht im CodeQL Hub aktiv.')" style="border-color: var(--neon-pink); color: var(--neon-pink);">[ APP EBENE ]</button>
+            </div>
+        </div>
+
+        <h2>CodeQL CLI & Zentrales Terminal</h2>
+        <div id="terminal">> [INIT] rfof-codeql-network initialisiert...<br>> [AXIOM] PRAI = 0 / Satoramy = 42 geladen.<br>> Warten auf Authentifizierung...</div>
+    </div>
+
+    <script>
+        function checkTopAuthMaster() {
+            const isLogged = localStorage.getItem('rfof_logged_in') === 'true';
+            const shield = document.getElementById('deckLockShield');
+            const dot = document.getElementById('authLedgerDot');
+            const txt = document.getElementById('authStatusText');
+            const bar = document.getElementById('ttcHeaderAuthBar');
+            const inputs = document.getElementById('authInputContainer');
+
+            if (isLogged) {
+                if (shield) shield.style.display = 'none';
+                if (dot) { dot.style.background = '#00ff66'; dot.style.boxShadow = '0 0 6px #00ff66'; }
+                if (txt) { txt.style.color = '#00ff66'; txt.textContent = `VERIFIZIERT: ${localStorage.getItem('rfof_user') || 'Admin'}`; }
+                if (inputs) inputs.style.display = 'none';
+                if (bar) bar.style.background = '#021a08';
+            } else {
+                if (shield) shield.style.display = 'flex';
+                if (dot) { dot.style.background = '#ff0055'; dot.style.boxShadow = '0 0 6px #ff0055'; }
+                if (txt) { txt.style.color = '#ff0055'; txt.textContent = 'STATUS: GESPERRT (CODEQL AUTH ERFORDERLICH)'; }
+                if (inputs) inputs.style.display = 'flex';
+                if (bar) bar.style.background = '#1a0205';
+            }
+        }
+
+        function executeTopHeaderLogin() {
+            const u = document.getElementById('topAuthUser').value.trim() || 'Admin';
+            const p = document.getElementById('topAuthPass').value.trim();
+
+            localStorage.setItem('rfof_user', u);
+            if (p) localStorage.setItem('rfof_pass', p);
+            localStorage.setItem('rfof_logged_in', 'true');
+            localStorage.setItem('rfof_user_role', 'CodeQL-Master-Node');
+
+            checkTopAuthMaster();
+            
+            const terminal = document.getElementById('terminal');
+            if(terminal) {
+                terminal.innerHTML += `<br>> [AUTH SUCCESS] Benutzer ${u} verifiziert. CodeQL Matrix-Analysen freigeschaltet.`;
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', checkTopAuthMaster);
+    </script>
+</body>
+</html>
