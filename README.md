@@ -23,8 +23,16 @@ rfof-codeql-network/
 │   ├── package.json            # Manifest und Abhängigkeiten der Extension
 │   ├── src/                    # Quellcode der VS Code Extension
 │   │   ├── QuellCode.py        # Kern-Quellcode für die CodeQL-Analyse im Netzwerk
-│   │   └── codeql.py           # Bidirektionale E2E-Brücke direkt im src/-Ordner
+│   │   ├── codeql.V1.py           # Bidirektionale E2E-Brücke direkt im src/-Ordner
+│   │   ├── pzqqet_master_node.py
+│   │   ├── codeql.v2.py 
+│   │   └── codeql.v3.py 
+│   │
+│   │
 │   └── rfof.code-workspace     # Nahtlose Workspace-Entwicklungsumgebung
+│
+├── pzqqet_master_node.py
+│
 └── docs/
     └── architecture.md         # Architektur- und Sicherheitsdokumentation
 ```
