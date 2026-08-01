@@ -22,7 +22,13 @@ class TTCAuthCodeQLBridge:
 
     def _generate_auth_hash(self) -> str:
         payload = f"{self.username}:{self.password_paw}:RFOF-GENESIS-42"
-        return hashlib.sha256(payload.encode()).hexdigest()
+        salt = f"{self.username}:RFOF-AUTH-SALT".encode("utf-8")
+        return hashlib.pbkdf2_hmac(
+            "sha256",
+            payload.encode("utf-8"),
+            salt,
+            310000
+        ).hex()
 
     def generate_seed_pair(self, index: int) -> dict:
         """
